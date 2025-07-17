@@ -24,10 +24,10 @@ resource "scaleway_lb_backend" "backend" {
   proxy_protocol              = var.backend_proxy_protocol
   on_marked_down_action       = var.backend_marked_down_action
   health_check_http {
-    uri         = try(var.load_balancer_backend_health_check_https.uri, "")
-    method      = try(var.load_balancer_backend_health_check_https.method, null)
-    code        = try(var.load_balancer_backend_health_check_https.code, null)
-    host_header = try(var.load_balancer_backend_health_check_https.host_header, null)
+    uri         = try(var.load_balancer_backend_health_check_http.uri, "")
+    method      = try(var.load_balancer_backend_health_check_http.method, null)
+    code        = try(var.load_balancer_backend_health_check_http.code, null)
+    host_header = try(var.load_balancer_backend_health_check_http.host_header, null)
   }
 }
 
@@ -48,7 +48,7 @@ resource "scaleway_lb_ip" "main" {
 
 ### LOAD BALANCER
 resource "scaleway_lb" "main" {
-  ip_id       = scaleway_lb_ip.main.id
+  ip_ids      = [scaleway_lb_ip.main.id]
   name        = lower(coalesce(var.load_balancer_name, var.name))
   description = var.description
   type        = var.load_balancer_type
