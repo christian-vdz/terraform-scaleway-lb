@@ -31,7 +31,7 @@ module "lb" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_scaleway"></a> [scaleway](#provider\_scaleway) | 2.21.0 |
+| <a name="provider_scaleway"></a> [scaleway](#provider\_scaleway) | >= 2.20 |
 
 ## Modules
 
@@ -79,13 +79,13 @@ No modules.
 | <a name="input_frontend_name"></a> [frontend\_name](#input\_frontend\_name) | Name to be used on load balancer frontend resource as identifier | `string` | `""` | no |
 | <a name="input_frontend_timeout_client"></a> [frontend\_timeout\_client](#input\_frontend\_timeout\_client) | Defines maximum allowed inactivity time on the client side | `string` | `"30s"` | no |
 | <a name="input_load_balancer_action_rules"></a> [load\_balancer\_action\_rules](#input\_load\_balancer\_action\_rules) | A list of maps describing the ACL Rules for this LB. Required key/values: actions, rules. (default to load\_balancer\_action\_rules[count.index]) | `any` | `[]` | no |
-| <a name="input_load_balancer_backend_health_check_https"></a> [load\_balancer\_backend\_health\_check\_https](#input\_load\_balancer\_backend\_health\_check\_https) | An object describing the Health check method for this LB. Required key/values: type: https. Required: uri Optional: code, sni. (default to load\_balancer\_backend\_health\_check\_https[count.index] | <pre>object({<br>    uri         = string<br>    code        = number<br>    method      = string<br>    host_header = string<br>    sni         = string<br>  })</pre> | `null` | no |
+| <a name="input_load_balancer_backend_health_check_http"></a> [load\_balancer\_backend\_health\_check\_http](#input\_load\_balancer\_backend\_health\_check\_http) | An object describing the Health check method for this LB. Required key/values: type: http. Required: uri Optional: code, sni. (default to load\_balancer\_backend\_health\_check\_http[count.index] | <pre>object({<br/>    uri         = string<br/>    code        = number<br/>    method      = string<br/>    host_header = string<br/>  })</pre> | `null` | no |
 | <a name="input_load_balancer_name"></a> [load\_balancer\_name](#input\_load\_balancer\_name) | The resource name of the load balancer. | `string` | `""` | no |
 | <a name="input_load_balancer_route_host_header"></a> [load\_balancer\_route\_host\_header](#input\_load\_balancer\_route\_host\_header) | A list of maps describing the load balancer routes. Optional match\_sni, match\_host\_header. Conditions must be based on SNI for direction to TCP backends, or HTTP host headers for direction to HTTP backends. Use the routes endpoint to create, edit, list, get and delete your routes. | `any` | `[]` | no |
 | <a name="input_load_balancer_tags"></a> [load\_balancer\_tags](#input\_load\_balancer\_tags) | Additional tags for the VPC | `list(string)` | `[]` | no |
 | <a name="input_load_balancer_type"></a> [load\_balancer\_type](#input\_load\_balancer\_type) | The type of load balancer to create. Possible types: lb-s, lb-gp-m, lb-gp-l, lb-gp-xl | `string` | `"LB-S"` | no |
 | <a name="input_name"></a> [name](#input\_name) | The resource name of the load balancer. | `string` | `"scaleway-lb-module"` | no |
-| <a name="input_private_network_configs"></a> [private\_network\_configs](#input\_private\_network\_configs) | List of private networks configurations | <pre>list(object({<br>    private_network = object({<br>      id           = string<br>      dhcp_enabled = bool<br>      static_ips   = list(string)<br>    })<br>  }))</pre> | `[]` | no |
+| <a name="input_private_network_configs"></a> [private\_network\_configs](#input\_private\_network\_configs) | List of private networks configurations | <pre>list(object({<br/>    private_network = object({<br/>      id           = string<br/>      dhcp_enabled = bool<br/>      static_ips   = list(string)<br/>    })<br/>  }))</pre> | `[]` | no |
 | <a name="input_ssl_compatibility_level"></a> [ssl\_compatibility\_level](#input\_ssl\_compatibility\_level) | Determines the minimal SSL version which needs to be supported on client side. | `string` | `"ssl_compatibility_level_modern"` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | A list of tags to add to all resources | `list(string)` | `[]` | no |
 | <a name="input_timeouts"></a> [timeouts](#input\_timeouts) | Define maximum timeout for creating, updating, and deleting load balancer resources | `map(string)` | `{}` | no |

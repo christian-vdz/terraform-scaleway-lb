@@ -23,12 +23,11 @@ resource "scaleway_lb_backend" "backend" {
   health_check_port           = var.backend_health_check_port
   proxy_protocol              = var.backend_proxy_protocol
   on_marked_down_action       = var.backend_marked_down_action
-  health_check_https {
+  health_check_http {
     uri         = try(var.load_balancer_backend_health_check_https.uri, "")
-    code        = try(var.load_balancer_backend_health_check_https.code, null)
     method      = try(var.load_balancer_backend_health_check_https.method, null)
+    code        = try(var.load_balancer_backend_health_check_https.code, null)
     host_header = try(var.load_balancer_backend_health_check_https.host_header, null)
-    sni         = try(var.load_balancer_backend_health_check_https.sni, null)
   }
 }
 

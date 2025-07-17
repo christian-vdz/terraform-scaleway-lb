@@ -206,16 +206,15 @@ variable "backend_proxy_protocol" {
   description = "Type of PROXY protocol to enable"
 }
 
-variable "load_balancer_backend_health_check_https" {
+variable "load_balancer_backend_health_check_http" {
   type = object({
     uri         = string
     code        = number
     method      = string
     host_header = string
-    sni         = string
   })
   default     = null
-  description = "An object describing the Health check method for this LB. Required key/values: type: https. Required: uri Optional: code, sni. (default to load_balancer_backend_health_check_https[count.index]"
+  description = "An object describing the Health check method for this LB. Required key/values: type: http. Required: uri Optional: code, sni. (default to load_balancer_backend_health_check_http[count.index]"
 }
 
 ################################################################################
